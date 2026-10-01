@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Blue AI</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <aside class="sidebar">
+
+            <div class="brand">
+                <div class="logo">B</div>
+
+                <div>
+                    <h2>Blue</h2>
+                    <span>AI Assistant</span>
+                </div>
+            </div>
+
+            <button id="newChat" class="new-chat">
+                + Chat Baru
+            </button>
+
+            <div class="sidebar-bottom">
+                <button id="clearChat">
+                    🗑 Hapus Percakapan
+                </button>
+            </div>
+
+        </aside>
+
+
+        <main class="main">
+
+            <header class="topbar">
+
+                <div>
+                    <h1>Blue AI</h1>
+                    <p>Asisten AI kamu</p>
+                </div>
+
+                <button id="themeButton">
+                    ☀️
+                </button>
+
+            </header>
+
+
+            <section id="chat" class="chat">
+
+                <div class="welcome">
+
+                    <div class="big-logo">
+                        B
+                    </div>
+
+                    <h2>Halo, aku Blue 👋</h2>
+
+                    <p>
+                        Aku siap membantu menjawab pertanyaanmu.
+                    </p>
+
+                    <div class="suggestions">
+
+                        <button>
+                            Jelaskan sesuatu kepadaku
+                        </button>
+
+                        <button>
+                            Bantu aku belajar
+                        </button>
+
+                        <button>
+                            Berikan ide kreatif
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <div class="input-container">
+
+                <form id="chatForm">
+
+                    <input
+                        id="messageInput"
+                        type="text"
+                        placeholder="Tulis pesan untuk Blue..."
+                        autocomplete="off"
+                    >
+
+                    <button
+                        type="submit"
+                        id="sendButton"
+                    >
+                        ➤
+                    </button>
+
+                </form>
+
+                <p class="disclaimer">
+                    Blue AI dapat membuat kesalahan. Periksa informasi penting.
+                </p>
+
+            </div>
+
+        </main>
+
+    </div>
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>
