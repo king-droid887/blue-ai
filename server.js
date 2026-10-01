@@ -77,6 +77,6 @@ app.post("/api/chat", async (req, res) => {
     }
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
     console.log(`Blue AI berjalan di http://localhost:${PORT}`);
 });
