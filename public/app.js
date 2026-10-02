@@ -1,4 +1,4 @@
-const BLUE_API_BASE = "http://127.0.0.1:3000";
+const BLUE_API_BASE = "https://azure-willow-7669.de.deplexo.com";
 const chat = document.getElementById("chat");
 const form = document.getElementById("chatForm");
 const input = document.getElementById("messageInput");
