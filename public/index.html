@@ -14,10 +14,20 @@
 </head>
 
 <body>
+    <div id="blueSplash">
+        <div class="splash-logo">
+            <img src="/assets/blue-logo.png" alt="Blue AI">
+        </div>
+        <div class="splash-title">Blue AI</div>
+        <div class="splash-subtitle">Asisten AI kamu</div>
+    </div>
+
 
     <div class="app">
 
-        <aside class="sidebar">
+        <div id="drawerOverlay" class="drawer-overlay"></div>
+
+        <aside class="sidebar" id="blueSidebar">
 
             <div class="brand">
                 <div class="logo">B</div>
@@ -29,8 +39,20 @@
             </div>
 
             <button id="newChat" class="new-chat">
-                + Chat Baru
+                ＋ Chat Baru
             </button>
+
+            <div class="history-section">
+                <div class="history-title">
+                    <span>📌 Disematkan</span>
+                </div>
+                <div id="pinnedChats" class="chat-list"></div>
+
+                <div class="history-title">
+                    <span>🕘 Riwayat</span>
+                </div>
+                <div id="chatHistory" class="chat-list"></div>
+            </div>
 
             <div class="sidebar-bottom">
                 <button id="clearChat">
@@ -44,6 +66,10 @@
         <main class="main">
 
             <header class="topbar">
+
+                <button id="mobileMenu" class="mobile-menu" aria-label="Buka menu">
+                    ☰
+                </button>
 
                 <div>
                     <h1>Blue AI</h1>
@@ -95,6 +121,46 @@
             <div class="input-container">
 
                 <form id="chatForm">
+
+                    <input
+                        id="imageInput"
+                        type="file"
+                        accept="image/*"
+                        hidden
+                    >
+
+                    <div class="attachment-wrapper">
+
+                        <button
+                            type="button"
+                            id="imageButton"
+                            class="attachment-button"
+                            title="Lampiran"
+                        >
+                            ＋
+                        </button>
+
+                        <div id="attachmentMenu" class="attachment-menu">
+
+                            <button
+                                type="button"
+                                id="photoOption"
+                            >
+                                📷
+                                <span>Kirim foto</span>
+                            </button>
+
+                            <button
+                                type="button"
+                                id="generateImageOption"
+                            >
+                                🎨
+                                <span>Buat gambar</span>
+                            </button>
+
+                        </div>
+
+                    </div>
 
                     <input
                         id="messageInput"

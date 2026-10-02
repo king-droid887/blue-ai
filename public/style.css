@@ -323,14 +323,37 @@ button {
 
 /* MOBILE */
 
+/* MOBILE */
+
 @media (max-width: 700px) {
 
+    .app {
+        flex-direction: column;
+        height: 100vh;
+    }
+
     .sidebar {
-        display: none;
+        width: 100%;
+        max-height: 260px;
+        box-sizing: border-box;
+        overflow-y: auto;
+
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+
+        flex-shrink: 0;
+    }
+
+    .main {
+        width: 100%;
+        min-width: 0;
+        flex: 1;
+        min-height: 0;
     }
 
     .chat {
         padding: 20px 12px;
+        overflow-y: auto;
     }
 
     .welcome {
@@ -350,3 +373,1864 @@ button {
     }
 
 }
+
+/* ==========================
+   BLUE MOBILE DRAWER
+   ========================== */
+
+.drawer-overlay {
+    display: none;
+}
+
+.mobile-menu {
+    display: none;
+}
+
+/* Desktop */
+@media (min-width: 701px) {
+    .mobile-menu {
+        display: none;
+    }
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+
+    .app {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+    }
+
+    .main {
+        width: 100%;
+        min-width: 0;
+        flex: 1;
+    }
+
+    .mobile-menu {
+        display: block;
+        border: none;
+        background: transparent;
+        color: var(--text);
+        font-size: 24px;
+        padding: 6px;
+        cursor: pointer;
+    }
+
+    .sidebar {
+        position: fixed;
+        z-index: 2000;
+
+        top: 0;
+        left: 0;
+        bottom: 0;
+
+        width: 280px;
+        max-width: 82vw;
+
+        height: 100vh;
+        max-height: none;
+
+        transform: translateX(-105%);
+        transition: transform .25s ease;
+
+        overflow-y: auto;
+
+        border-right: 1px solid var(--border);
+        border-bottom: none;
+
+        background: var(--panel);
+    }
+
+    .sidebar.drawer-open {
+        transform: translateX(0);
+    }
+
+    .drawer-overlay {
+        position: fixed;
+        z-index: 1900;
+
+        inset: 0;
+
+        background: rgba(0, 0, 0, .45);
+
+        opacity: 0;
+        pointer-events: none;
+
+        transition: opacity .25s ease;
+
+        display: block;
+    }
+
+    .drawer-overlay.active {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .topbar {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .topbar > div {
+        flex: 1;
+    }
+}
+
+
+/* ==========================
+   BLUE CHAT HISTORY - VERTICAL
+   ========================== */
+
+.history-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 18px;
+    overflow: hidden;
+}
+
+.history-title {
+    padding: 10px 4px 5px;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.chat-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
+}
+
+.chat-history-item {
+    width: 100%;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 10px 12px;
+
+    border: none;
+    border-radius: 9px;
+
+    background: transparent;
+    color: var(--text);
+
+    text-align: left;
+    cursor: pointer;
+
+    box-sizing: border-box;
+}
+
+.chat-history-item:hover {
+    background: var(--panel2);
+}
+
+.chat-history-item.active {
+    background: var(--panel2);
+}
+
+.chat-history-title {
+    flex: 1;
+    min-width: 0;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    font-size: 14px;
+}
+
+.chat-history-pin {
+    flex-shrink: 0;
+}
+
+.empty-history {
+    padding: 8px 10px;
+
+    color: var(--muted);
+    font-size: 12px;
+
+    text-align: left;
+}
+
+@media (max-width: 700px) {
+
+    .history-section {
+        margin-top: 15px;
+    }
+
+    .chat-history-item {
+        padding: 11px 12px;
+    }
+
+}
+
+
+/* ==========================
+   CHAT ACTION MENU
+   ========================== */
+
+.chat-history-row {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.chat-history-row .chat-history-item {
+    flex: 1;
+    min-width: 0;
+    padding-right: 42px;
+}
+
+.chat-menu-button {
+    position: absolute;
+    right: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 34px;
+    height: 34px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: transparent;
+    color: var(--muted);
+
+    font-size: 20px;
+    line-height: 1;
+
+    cursor: pointer;
+    z-index: 5;
+}
+
+.chat-menu-button:hover {
+    background: var(--panel2);
+    color: var(--text);
+}
+
+.chat-action-menu {
+    position: absolute;
+    right: 38px;
+    top: 100%;
+
+    min-width: 160px;
+
+    padding: 5px;
+
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, .25);
+
+    z-index: 100;
+}
+
+.chat-action-menu button {
+    display: block;
+
+    width: 100%;
+
+    padding: 10px 12px;
+
+    border: none;
+    border-radius: 7px;
+
+    background: transparent;
+    color: var(--text);
+
+    text-align: left;
+    font-size: 13px;
+
+    cursor: pointer;
+}
+
+.chat-action-menu button:hover {
+    background: var(--panel2);
+}
+
+
+/* ==========================
+   BLUE IMAGE PREVIEW
+   ========================== */
+
+.image-preview {
+    padding: 8px 12px;
+}
+
+.image-preview-card {
+    position: relative;
+    display: inline-block;
+    max-width: 180px;
+}
+
+.image-preview-card img {
+    display: block;
+    width: 180px;
+    max-height: 140px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+}
+
+#removeImage {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+
+    width: 26px;
+    height: 26px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: var(--panel);
+    color: var(--text);
+
+    font-size: 18px;
+    line-height: 26px;
+
+    cursor: pointer;
+}
+
+#removeImage:hover {
+    background: var(--panel2);
+}
+
+#imageButton {
+    width: 45px;
+    height: 45px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: transparent;
+    color: var(--text);
+
+    font-size: 19px;
+    cursor: pointer;
+}
+
+#imageButton:hover {
+    background: var(--panel2);
+}
+
+
+/* ==========================
+   BLUE AI SPLASH ANIMATION
+   ========================== */
+
+#blueSplash {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--bg);
+    
+    animation: blueSplashOut .7s ease 1.5s forwards;
+}
+
+.splash-logo {
+    width: 82px;
+    height: 82px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 24px;
+
+    background: var(--blue);
+    color: white;
+
+    font-size: 46px;
+    font-weight: 800;
+
+    box-shadow: 0 12px 40px rgba(0, 100, 255, .25);
+
+    animation: blueLogoIn .7s cubic-bezier(.2,.8,.2,1);
+}
+
+.splash-title {
+    margin-top: 18px;
+
+    font-size: 28px;
+    font-weight: 700;
+
+    color: var(--text);
+
+    animation: blueTextIn .6s ease .25s both;
+}
+
+.splash-subtitle {
+    margin-top: 5px;
+
+    color: var(--muted);
+    font-size: 14px;
+
+    animation: blueTextIn .6s ease .4s both;
+}
+
+@keyframes blueLogoIn {
+    from {
+        opacity: 0;
+        transform: scale(.65) translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes blueTextIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes blueSplashOut {
+    to {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+    }
+}
+
+
+.splash-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 24px;
+    display: block;
+}
+
+
+/* ==========================
+   BLUE ATTACHMENT MENU
+   ========================== */
+
+.attachment-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.attachment-button {
+    width: 42px;
+    height: 42px;
+    border: none;
+    border-radius: 12px;
+    background: transparent;
+    color: var(--text);
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.attachment-button:hover {
+    background: var(--panel2);
+}
+
+.attachment-menu {
+    position: absolute;
+    bottom: 52px;
+    left: 0;
+
+    min-width: 190px;
+    padding: 6px;
+
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,.25);
+
+    display: none;
+    z-index: 3000;
+}
+
+.attachment-menu.open {
+    display: block;
+}
+
+.attachment-menu button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 11px;
+    border: none;
+    border-radius: 10px;
+
+    background: transparent;
+    color: var(--text);
+
+    text-align: left;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.attachment-menu button:hover {
+    background: var(--panel2);
+}
+
+.attachment-menu button:first-letter {
+    font-size: 18px;
+}
+
+
+.blue-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    margin: 10px 0;
+}
+
+.message-content table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.message-content th,
+.message-content td {
+    border: 1px solid rgba(128, 128, 128, 0.35);
+    padding: 8px 10px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.message-content th {
+    font-weight: 700;
+}
+
+.message-content code {
+    padding: 2px 5px;
+    border-radius: 5px;
+    font-family: monospace;
+}
+
+
+/* ==========================
+   MESSAGE ACTIONS
+   ========================== */
+
+.message {
+    position: relative;
+}
+
+.message-actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 6px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .15s ease;
+}
+
+/* Muncul ketika pesan disentuh / diarahkan */
+.message:hover .message-actions,
+.message:focus-within .message-actions,
+.message.actions-visible .message-actions {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.message-action {
+    width: 32px;
+    height: 32px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: 1px solid var(--border);
+    border-radius: 9px;
+
+    background: var(--panel);
+    color: var(--text);
+
+    cursor: pointer;
+
+    transition:
+        background .15s ease,
+        transform .15s ease,
+        border-color .15s ease;
+}
+
+.message-action:hover {
+    background: var(--panel2);
+    transform: translateY(-1px);
+}
+
+.message-action:active {
+    transform: scale(.94);
+}
+
+.message-action svg {
+    width: 17px;
+    height: 17px;
+
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* Android / touchscreen */
+@media (hover: none) {
+
+    .message:active .message-actions,
+    .message.actions-visible .message-actions {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+}
+
+
+/* ==========================
+   BLUE MESSAGE CONTEXT MENU
+   ========================== */
+
+.message-timestamp {
+    font-size: 11px;
+    opacity: .55;
+    margin-bottom: 5px;
+    user-select: none;
+}
+
+.message-actions {
+    position: absolute;
+
+    bottom: -48px;
+    left: 0;
+
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    padding: 6px;
+
+    border: 1px solid var(--border);
+    border-radius: 14px;
+
+    background: var(--panel);
+
+    box-shadow: 0 8px 28px rgba(0,0,0,.22);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transform: translateY(-5px) scale(.96);
+
+    transition:
+        opacity .15s ease,
+        transform .15s ease,
+        visibility .15s ease;
+
+    z-index: 5000;
+}
+
+.message.actions-visible .message-actions {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+
+    transform: translateY(0) scale(1);
+}
+
+.message-action {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: 0;
+    border-radius: 10px;
+
+    background: transparent;
+    color: var(--text);
+
+    cursor: pointer;
+}
+
+.message-action:hover {
+    background: var(--panel2);
+}
+
+.message-action:active {
+    transform: scale(.92);
+}
+
+.message-action svg {
+    width: 18px;
+    height: 18px;
+
+    fill: none;
+    stroke: currentColor;
+
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.message-action.action-success {
+    opacity: .6;
+}
+
+@media (max-width: 600px) {
+
+    .message-actions {
+        position: fixed;
+
+        left: 50%;
+        bottom: 18px;
+
+        transform: translate(-50%, 10px) scale(.96);
+
+        border-radius: 16px;
+
+        padding: 7px;
+
+        max-width: calc(100vw - 24px);
+
+        box-shadow: 0 12px 35px rgba(0,0,0,.30);
+    }
+
+    .message.actions-visible .message-actions {
+        transform: translate(-50%, 0) scale(1);
+    }
+
+    .message-action {
+        width: 42px;
+        height: 42px;
+    }
+
+    .message-action svg {
+        width: 19px;
+        height: 19px;
+    }
+}
+
+
+/* ==========================
+   BLUE MESSAGE CONTEXT MENU
+   ========================== */
+
+.message {
+    position: relative;
+}
+
+.message-timestamp {
+    font-size: 11px;
+    opacity: .58;
+    margin: 0 0 5px 4px;
+    user-select: none;
+    line-height: 1.3;
+}
+
+.message-actions {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 7px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-3px);
+    transition:
+        opacity .18s ease,
+        transform .18s ease;
+}
+
+.message.actions-visible .message-actions {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.message-action {
+    width: 34px;
+    height: 34px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    background: var(--panel);
+    color: var(--text);
+
+    cursor: pointer;
+
+    box-shadow: 0 3px 12px rgba(0,0,0,.12);
+
+    transition:
+        background .15s ease,
+        transform .15s ease,
+        border-color .15s ease;
+}
+
+.message-action:hover {
+    background: var(--panel2);
+    transform: translateY(-1px);
+}
+
+.message-action:active {
+    transform: scale(.94);
+}
+
+.message-action svg {
+    width: 17px;
+    height: 17px;
+
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.message-action.action-success {
+    border-color: #4caf50;
+}
+
+@media (hover: none) {
+
+    .message.actions-visible .message-actions {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* ==========================
+   BLUE MESSAGE META
+   ========================== */
+
+.message-timestamp {
+    margin: 0 0 5px 4px;
+    font-size: 11px;
+    line-height: 1.3;
+    color: var(--text);
+    opacity: .52;
+    user-select: none;
+}
+
+/* ==========================
+   BLUE ACTION BAR
+   ========================== */
+
+.message-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    margin-top: 8px;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transform: translateY(-4px) scale(.98);
+
+    transition:
+        opacity .16s ease,
+        transform .16s ease,
+        visibility .16s ease;
+}
+
+.message.actions-visible .message-actions {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+}
+
+.message-action {
+    width: 34px;
+    height: 34px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    background: var(--panel);
+    color: var(--text);
+
+    cursor: pointer;
+
+    box-shadow: 0 4px 14px rgba(0,0,0,.12);
+
+    transition:
+        background .15s ease,
+        transform .15s ease;
+}
+
+.message-action:hover {
+    background: var(--panel2);
+    transform: translateY(-1px);
+}
+
+.message-action:active {
+    transform: scale(.93);
+}
+
+.message-action svg {
+    width: 17px;
+    height: 17px;
+
+    fill: none;
+    stroke: currentColor;
+
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+@media (hover: none) {
+
+    .message.actions-visible .message-actions {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+
+.message-action.copied {
+    transform: scale(1.05);
+}
+
+
+/* ================================
+   BLUE MESSAGE POPUP
+   ================================ */
+
+.message {
+    position: relative;
+}
+
+.message-popup {
+    position: absolute;
+    z-index: 5000;
+
+    right: 8px;
+    top: calc(100% + 8px);
+
+    width: 245px;
+
+    padding: 8px;
+
+    background: var(--panel);
+    border: 1px solid var(--border);
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 12px 35px rgba(0,0,0,.30),
+        0 2px 8px rgba(0,0,0,.12);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transform: translateY(-6px) scale(.97);
+    transform-origin: top right;
+
+    transition:
+        opacity .16s ease,
+        transform .16s ease,
+        visibility .16s ease;
+}
+
+.message-popup.open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+
+    transform: translateY(0) scale(1);
+}
+
+.message-popup-time {
+    padding: 8px 12px 10px;
+
+    font-size: 13px;
+    line-height: 1.3;
+
+    color: var(--text);
+    opacity: .62;
+
+    user-select: none;
+}
+
+.message-popup-action {
+    width: 100%;
+
+    min-height: 52px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 10px 12px;
+
+    border: 0;
+    border-radius: 13px;
+
+    background: transparent;
+    color: var(--text);
+
+    font-size: 16px;
+    font-weight: 500;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        background .12s ease,
+        transform .12s ease;
+}
+
+.message-popup-action:hover {
+    background: var(--panel2);
+}
+
+.message-popup-action:active {
+    transform: scale(.98);
+}
+
+.message-popup-icon {
+    width: 28px;
+    height: 28px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    flex: 0 0 28px;
+}
+
+.message-popup-icon svg {
+    width: 24px;
+    height: 24px;
+
+    fill: none;
+    stroke: currentColor;
+
+    stroke-width: 1.8;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+@media (max-width: 600px) {
+
+    .message-popup {
+        right: 4px;
+        width: 245px;
+
+        border-radius: 20px;
+    }
+
+    .message-popup-action {
+        min-height: 54px;
+        font-size: 16px;
+    }
+
+}
+
+
+
+/* =========================================================
+   BLUE MESSAGE UI OVERHAUL
+   ========================================================= */
+
+.message {
+    position: relative;
+}
+
+.message-timestamp {
+    display: none !important;
+}
+
+/* Floating message popup */
+
+.message-context-menu {
+    position: absolute;
+    z-index: 5000;
+
+    min-width: 220px;
+    max-width: calc(100vw - 32px);
+
+    padding: 8px;
+
+    background: var(--panel, #2b2b2b);
+    color: var(--text, #fff);
+
+    border: 1px solid rgba(255,255,255,.10);
+    border-radius: 18px;
+
+    box-shadow:
+        0 14px 38px rgba(0,0,0,.32),
+        0 2px 8px rgba(0,0,0,.18);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transform:
+        translateY(-5px)
+        scale(.97);
+
+    transform-origin: top left;
+
+    transition:
+        opacity .14s ease,
+        transform .14s ease,
+        visibility .14s ease;
+}
+
+.message.context-open .message-context-menu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+
+    transform:
+        translateY(0)
+        scale(1);
+}
+
+/* User messages open toward the left */
+
+.message.user .message-context-menu {
+    right: 0;
+    top: calc(100% + 8px);
+    transform-origin: top right;
+}
+
+/* Blue messages open toward the right */
+
+.message.blue .message-context-menu {
+    left: 0;
+    top: calc(100% + 8px);
+}
+
+/* Keep popup inside small screens */
+
+@media (max-width: 520px) {
+
+    .message-context-menu {
+        min-width: 225px;
+    }
+
+    .message.user .message-context-menu {
+        right: 0;
+        left: auto;
+    }
+
+    .message.blue .message-context-menu {
+        left: 0;
+        right: auto;
+    }
+}
+
+.message-context-time {
+    padding:
+        5px 10px
+        8px;
+
+    color: var(--text, #fff);
+
+    font-size: 12px;
+    line-height: 1.3;
+
+    opacity: .58;
+
+    user-select: none;
+}
+
+.message-context-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.message-context-action {
+    width: 100%;
+
+    min-height: 46px;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    gap: 14px;
+
+    padding: 9px 10px;
+
+    border: 0;
+    border-radius: 12px;
+
+    background: transparent;
+    color: var(--text, #fff);
+
+    font: inherit;
+    font-size: 15px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    text-align: left;
+
+    transition:
+        background .12s ease,
+        transform .12s ease;
+}
+
+.message-context-action:hover {
+    background: rgba(255,255,255,.08);
+}
+
+.message-context-action:active {
+    transform: scale(.98);
+}
+
+.message-context-action svg {
+    width: 23px;
+    height: 23px;
+
+    flex: 0 0 23px;
+
+    fill: none;
+    stroke: currentColor;
+
+    stroke-width: 1.8;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    opacity: .94;
+}
+
+.message-context-action.success svg {
+    opacity: 1;
+}
+
+/* Never show the old horizontal action row */
+
+.message .message-actions {
+    display: none !important;
+}
+
+/* Edit mode */
+
+.editing-input {
+    outline: 2px solid rgba(90,150,255,.45);
+    outline-offset: 1px;
+}
+
+.cancel-edit-button {
+    width: 38px;
+    height: 38px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    flex: 0 0 38px;
+
+    padding: 0;
+
+    border: 1px solid var(--border, rgba(255,255,255,.12));
+    border-radius: 11px;
+
+    background: var(--panel, #2b2b2b);
+    color: var(--text, #fff);
+
+    cursor: pointer;
+}
+
+.cancel-edit-button svg {
+    width: 18px;
+    height: 18px;
+
+    fill: none;
+    stroke: currentColor;
+
+    stroke-width: 2;
+    stroke-linecap: round;
+}
+
+/* Popup should remain usable above the composer */
+
+@media (max-width: 520px) {
+
+    .message-context-menu {
+        max-height: min(300px, 55vh);
+        overflow-y: auto;
+    }
+}
+
+
+/* =========================================
+   BLUE CHATGPT-LIKE MESSAGE POPUP
+   ========================================= */
+
+.message {
+    position: relative;
+}
+
+/* Jam hanya muncul di dalam popup */
+.message-popup-time {
+    padding: 4px 4px 10px 4px;
+    font-size: 13px;
+    line-height: 1.3;
+    color: var(--text);
+    opacity: .58;
+    white-space: nowrap;
+    user-select: none;
+}
+
+/* Popup */
+.message-actions {
+    position: absolute;
+
+    right: 0;
+    bottom: -6px;
+
+    min-width: 245px;
+
+    padding: 10px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    gap: 2px;
+
+    background: var(--panel);
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 14px 35px rgba(0,0,0,.28),
+        0 4px 12px rgba(0,0,0,.14);
+
+    z-index: 5000;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transform:
+        translateY(8px)
+        scale(.97);
+
+    transform-origin: bottom right;
+
+    transition:
+        opacity .16s ease,
+        transform .16s ease,
+        visibility .16s ease;
+}
+
+/* Popup aktif */
+.message.actions-visible .message-actions {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+
+    transform:
+        translateY(0)
+        scale(1);
+}
+
+/* Tombol */
+.message-action {
+    width: 100%;
+    min-height: 48px;
+
+    display: flex;
+    align-items: center;
+
+    justify-content: flex-start;
+
+    gap: 15px;
+
+    padding: 8px 12px;
+
+    border: none;
+    border-radius: 11px;
+
+    background: transparent;
+
+    color: var(--text);
+
+    font-family: inherit;
+    font-size: 16px;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        background .12s ease,
+        transform .12s ease;
+}
+
+.message-action:hover {
+    background: var(--panel2);
+}
+
+.message-action:active {
+    transform: scale(.98);
+}
+
+/* Ikon */
+.message-action-icon {
+    width: 28px;
+    height: 28px;
+
+    flex: 0 0 28px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.message-action-icon svg {
+    width: 23px;
+    height: 23px;
+
+    fill: none;
+
+    stroke: currentColor;
+
+    stroke-width: 1.8;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* Teks */
+.message-action-label {
+    display: block;
+
+    color: var(--text);
+
+    font-size: 16px;
+
+    line-height: 1.2;
+}
+
+/* Popup pesan user */
+.message.user .message-actions {
+    right: 0;
+}
+
+/* Popup pesan Blue */
+.message.blue .message-actions {
+    right: auto;
+    left: 0;
+
+    transform-origin: bottom left;
+}
+
+/* Desktop hover tidak otomatis membuka popup */
+@media (hover: hover) {
+
+    .message-action:hover {
+        background: var(--panel2);
+    }
+
+}
+
+/* Android */
+@media (hover: none) {
+
+    .message.actions-visible .message-actions {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+/* Jangan biarkan popup keluar layar terlalu jauh */
+@media (max-width: 600px) {
+
+    .message-actions {
+        right: 8px;
+        max-width: calc(100vw - 32px);
+        min-width: 220px;
+    }
+
+    .message.blue .message-actions {
+        left: 8px;
+        right: auto;
+    }
+
+}
+
+
+/* =========================================
+   BLUE FINAL MESSAGE POPUP
+   Override semua style message-actions lama
+   ========================================= */
+
+.message {
+    position: relative;
+}
+
+/* Hilangkan timestamp dari tampilan chat */
+.message-timestamp {
+    display: none !important;
+}
+
+/* Popup tombol */
+.message .message-actions {
+    display: flex !important;
+
+    position: absolute !important;
+
+    left: 8px !important;
+    right: auto !important;
+    bottom: -58px !important;
+
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: calc(100vw - 32px) !important;
+
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    gap: 4px !important;
+
+    padding: 6px !important;
+
+    background: var(--panel) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 16px !important;
+
+    box-shadow:
+        0 8px 30px rgba(0,0,0,.25) !important;
+
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+
+    transform: translateY(-6px) scale(.94) !important;
+
+    transition:
+        opacity .16s ease,
+        transform .16s ease,
+        visibility .16s ease !important;
+
+    z-index: 99999 !important;
+}
+
+/* Popup saat pesan ditekan */
+.message.actions-visible .message-actions {
+    display: flex !important;
+
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+
+    transform: translateY(0) scale(1) !important;
+}
+
+/* Tombol ikon */
+.message .message-action {
+    width: 42px !important;
+    height: 42px !important;
+    min-height: 42px !important;
+
+    flex: 0 0 42px !important;
+
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    padding: 0 !important;
+
+    border: 0 !important;
+    border-radius: 12px !important;
+
+    background: transparent !important;
+    color: var(--text) !important;
+
+    font-size: 0 !important;
+
+    cursor: pointer !important;
+}
+
+.message .message-action:hover {
+    background: var(--panel2) !important;
+}
+
+.message .message-action:active {
+    transform: scale(.90) !important;
+}
+
+/* Ikon SVG */
+.message .message-action svg {
+    width: 20px !important;
+    height: 20px !important;
+
+    fill: none !important;
+    stroke: currentColor !important;
+
+    stroke-width: 1.8 !important;
+    stroke-linecap: round !important;
+    stroke-linejoin: round !important;
+}
+
+/* Pesan user: bubble agak ke kanan */
+.message.user .message-actions {
+    left: auto !important;
+    right: 8px !important;
+}
+
+/* Pesan Blue: bubble dari kiri */
+.message.blue .message-actions {
+    left: 8px !important;
+    right: auto !important;
+}
+
+/* Android */
+@media (max-width: 600px) {
+
+    .message .message-actions {
+        bottom: -56px !important;
+        max-width: calc(100vw - 24px) !important;
+    }
+
+    .message .message-action {
+        width: 42px !important;
+        height: 42px !important;
+        flex-basis: 42px !important;
+    }
+
+}
+
+
+/* =========================================================
+   BLUE FINAL MESSAGE POPUP FIX
+   Aturan final — mengalahkan aturan popup lama
+   ========================================================= */
+
+.message {
+    position: relative;
+    overflow: visible !important;
+}
+
+.message .message-actions {
+    position: absolute !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+
+    width: 245px !important;
+    min-width: 245px !important;
+    max-width: min(245px, calc(100vw - 32px)) !important;
+
+    padding: 8px !important;
+    margin: 0 !important;
+    gap: 2px !important;
+
+    background: var(--panel, #111827) !important;
+    border: 1px solid var(--border, rgba(255,255,255,.12)) !important;
+    border-radius: 18px !important;
+
+    box-shadow:
+        0 14px 35px rgba(0,0,0,.28),
+        0 4px 12px rgba(0,0,0,.14) !important;
+
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+
+    transform: translateY(-5px) scale(.96) !important;
+    transform-origin: bottom left !important;
+
+    transition:
+        opacity .16s ease,
+        transform .16s ease,
+        visibility .16s ease !important;
+
+    z-index: 99999 !important;
+}
+
+/* Popup dibuka oleh tap */
+.message.actions-visible .message-actions {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+
+    transform: translateY(0) scale(1) !important;
+}
+
+/* Waktu di popup */
+.message .message-timestamp {
+    display: block !important;
+
+    margin: 0 4px 6px !important;
+    padding: 0 !important;
+
+    font-size: 13px !important;
+    line-height: 1.3 !important;
+
+    color: var(--text, #fff) !important;
+    opacity: .58 !important;
+
+    white-space: nowrap !important;
+}
+
+/* Tombol popup */
+.message .message-actions .message-action {
+    position: relative !important;
+
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 48px !important;
+    height: 48px !important;
+
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+
+    gap: 14px !important;
+
+    margin: 0 !important;
+    padding: 8px 12px !important;
+
+    border: 0 !important;
+    border-radius: 11px !important;
+
+    background: transparent !important;
+    color: var(--text, #fff) !important;
+
+    font-size: 16px !important;
+    line-height: 1.2 !important;
+
+    white-space: nowrap !important;
+    text-align: left !important;
+    box-sizing: border-box !important;
+}
+
+/* Ikon */
+.message .message-actions .message-action svg {
+    width: 22px !important;
+    height: 22px !important;
+
+    flex: 0 0 22px !important;
+
+    display: block !important;
+
+    fill: none !important;
+    stroke: currentColor !important;
+    stroke-width: 1.8 !important;
+    stroke-linecap: round !important;
+    stroke-linejoin: round !important;
+}
+
+/* Jangan ada tombol lama yang tampil sebagai baris */
+.message .message-actions .message-action:hover {
+    background: var(--panel2, rgba(255,255,255,.08)) !important;
+}
+
+/* Pesan user: popup di kanan */
+.message.user .message-actions {
+    right: 0 !important;
+    left: auto !important;
+    transform-origin: bottom right !important;
+}
+
+/* Pesan Blue: popup di kiri */
+.message.blue .message-actions {
+    left: 0 !important;
+    right: auto !important;
+    transform-origin: bottom left !important;
+}
+
+/* Saat aktif */
+.message.user.actions-visible .message-actions {
+    transform: translateY(0) scale(1) !important;
+}
+
+.message.blue.actions-visible .message-actions {
+    transform: translateY(0) scale(1) !important;
+}
+
+/* Android */
+@media (max-width: 600px) {
+
+    .message .message-actions {
+        width: 245px !important;
+        min-width: 220px !important;
+        max-width: calc(100vw - 24px) !important;
+    }
+
+    .message.user .message-actions {
+        right: 0 !important;
+        left: auto !important;
+    }
+
+    .message.blue .message-actions {
+        left: 0 !important;
+        right: auto !important;
+    }
+}
+
