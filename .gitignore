@@ -12,3 +12,6 @@ android/app/build/
 *.drawer-backup
 *.production-backup-*
 *.broken-backup
+
+!data/
+!data/blue-memory.json
